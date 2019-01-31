@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.core.contenttype_3.7.200.v20181107-1343.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.core.jobs_3.10.200.v20180912-1356.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.core.resources_3.13.200.v20181121-1020.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.core.runtime_3.15.100.v20181107-1343.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.equinox.common_3.10.200.v20181021-1645.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.equinox.preferences_3.7.200.v20180827-1235.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jdt.core_3.16.0.v20181130-1748.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.osgi_3.13.200.v20181130-2106.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.text_3.8.0.v20180923-1636.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/workspace/winter_project/lib/org.eclipse.core.contenttype_3.7.200.v20181107-1343.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/workspace/winter_project/lib/org.eclipse.core.jobs_3.10.200.v20180912-1356.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/workspace/winter_project/lib/org.eclipse.core.resources_3.13.200.v20181121-1020.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/workspace/winter_project/lib/org.eclipse.core.runtime_3.15.100.v20181107-1343.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/workspace/winter_project/lib/org.eclipse.equinox.common_3.10.200.v20181021-1645.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/workspace/winter_project/lib/org.eclipse.equinox.preferences_3.7.200.v20180827-1235.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/workspace/winter_project/lib/org.eclipse.jdt.core_3.16.0.v20181130-1748.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/workspace/winter_project/lib/org.eclipse.osgi_3.13.200.v20181130-2106.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/workspace/winter_project/lib/org.eclipse.text_3.8.0.v20180923-1636.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/winter/sqlite-jdbc-3.23.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
