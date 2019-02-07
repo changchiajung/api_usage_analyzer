@@ -36,35 +36,25 @@ public class Main {
 		cu.accept(new ASTVisitor() {
 			Set names = new HashSet();
 			public boolean visit(TypeDeclaration node) {
-				//SimpleName name = node.getName();
-				//this.names.add(name.getIdentifier());
 				System.out.print("Class: '" + node.getName());
-				//statement.executeUpdate("INSERT INTO person values(' "+ids[i]+"', '"+names[i]+"')");
 				return true;
 			}
 			public boolean visit(MethodDeclaration node) {
-				//SimpleName name = node.getName();
-				//this.names.add(name.getIdentifier());
-				System.out.print("  METHOD: '" + node.getName());
+				System.out.print("METHOD: '" + node.getName());
 				return true;
 			}
 			public boolean visit(FieldDeclaration node) {
-				//SimpleName name = node.getName();
-				//this.names.add(name.getIdentifier());
-				System.out.print("  FIELD'" + node.fragments());
-				System.out.print(node.getClass());
+				System.out.print("FIELD'" + node.fragments());
 				return true; 
 			}
 			public boolean visit(SimpleType node) {
-				System.out.print("!!!!"+node.toString());
+				System.out.print("TYPE"+node.toString());
 				return true;
 			}
 			public boolean visit(VariableDeclarationFragment node) {
 				SimpleName name = node.getName();
 				this.names.add(name.getIdentifier());
 				System.out.println("  Declaration of '" + name + "' at line" + cu.getLineNumber(name.getStartPosition()));
-				System.out.println("=========");
-
 				return false; // do not continue
 			}
 
@@ -74,6 +64,9 @@ public class Main {
 				}
 				return true;
 			}
+			//AST 找各種東西
+			//但不確定 type method field 找的是不是正確的 可能要配合下面的找variable後再拿他的class method field
+			//need survey
 		});
 
 	}
@@ -106,8 +99,8 @@ public class Main {
 		// System.out.println(rootDir.listFiles());
 		File[] files = root.listFiles();
 		String filePath = null;
-		parse(readFileToString("C:\\Users\\User\\workspace\\winter_project\\src\\Test.java"));
-		/*
+		//read single file
+		//parse(readFileToString("C:\\Users\\User\\workspace\\winter_project\\src\\Test.java"));
 		for (File f : files) {
 			//System.out.println(f);
 			filePath = f.getAbsolutePath();
@@ -115,9 +108,9 @@ public class Main {
 			if (f.isFile()) {
 				parse(readFileToString(filePath));
 			}
-		}*/
+		}
 	}
-
+	//create sqlite with four table
 	public static void opendb() throws ClassNotFoundException {
 		{
 			// load the sqlite-JDBC driver using the current class loader
@@ -136,14 +129,15 @@ public class Main {
 				statement.executeUpdate("DROP TABLE IF EXISTS [JAVA MODULE]");
 				statement.executeUpdate("DROP TABLE IF EXISTS [API USAGE]");
 				statement.executeUpdate(
-						"CREATE TABLE [API] (API_ID STRING PRIMARY KEY, Package STRING, Class STRING, Method STRING, Field STRING)");
+						"CREATE TABLE [API] (API_ID STRING PRIMARY KEY, Package STRING NOT NULL, Class STRING NOT NULL, Method STRING, Field STRING)");
 				statement.executeUpdate(
-						"CREATE TABLE [CLIENT] (Client_ID STRING PRIMARY KEY, Client_name STRING, Client_Version STRING, Release_Data DATE)");
+						"CREATE TABLE [CLIENT] (Client_ID STRING PRIMARY KEY, Client_name STRING NOT NULL, Client_Version STRING NOT NULL, Release_Data DATE NOT NULL)");
 				statement.executeUpdate(
-						"CREATE TABLE [JAVA MODULE] (Java_Module_ID STRING PRIMARY KEY, Module name STRING, Module_Directory STRING, Client_ID STRING ,FOREIGN KEY(Client_ID) REFERENCES CLIENT(Client_ID) )");
+						"CREATE TABLE [JAVA MODULE] (Java_Module_ID STRING PRIMARY KEY, Module name STRING NOT NULL, Module_Directory STRING NOT NULL, Client_ID STRING NOT NULL ,FOREIGN KEY(Client_ID) REFERENCES CLIENT(Client_ID))");
 				statement.executeUpdate(
-						"CREATE TABLE [API USAGE] (API_Usage_ID STRING PRIMARY KEY, Usage_Count INT, Client_ID STRING, API_ID STRING, Java_Module_ID STRING, FOREIGN KEY(Client_ID) REFERENCES CLIENT(Client_ID), FOREIGN KEY(API_ID) REFERENCES API(API_ID), FOREIGN KEY(Java_Module_ID) REFERENCES [JAVA MODULE](Java_Module_ID))");
+						"CREATE TABLE [API USAGE] (API_Usage_ID STRING PRIMARY KEY, Usage_Count INT NOT NULL, Client_ID STRING NOT NULL, API_ID STRING NOT NULL, Java_Module_ID STRING NOT NULL, FOREIGN KEY(Client_ID) REFERENCES CLIENT(Client_ID), FOREIGN KEY(API_ID) REFERENCES API(API_ID), FOREIGN KEY(Java_Module_ID) REFERENCES [JAVA MODULE](Java_Module_ID))");
 			/*statement.executeUpdate("INSERT INTO person values(' "+ids[i]+"', '"+names[i]+"')");*/
+				//insert value in db
 			}
 
 			catch (SQLException e) {
