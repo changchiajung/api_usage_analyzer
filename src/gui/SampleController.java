@@ -2,6 +2,7 @@ package application;
 
 import java.io.File;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.*;
 import javafx.collections.ObservableList;
@@ -21,9 +22,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 
 public class SampleController implements Initializable{
+	get_data data= new get_data ();    //get data class
+	 
 	public boolean Field=false;
 	public boolean Method=false;
 	public boolean Class=false;
+	public boolean use=false;
 	public String  search ="";    //搜尋字串
 	
 	@FXML
@@ -84,7 +88,7 @@ public class SampleController implements Initializable{
 	  
 	  @FXML
 	    public void choose_type(){                //確定要拿資料的function
-		  
+		  use=true;
 		  set_Data();
 	    }	  
 	 
@@ -98,12 +102,22 @@ public class SampleController implements Initializable{
 	    private NumberAxis y;
 	@FXML
 	 public  void set_Data(){                         //放資料
-		 
+		try {
+			data.getdata(Class, Method, Field, search=searchfield.getText(),use);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		search=searchfield.getText();
 		barchart.getData().clear();                   //清除資料
 		pieChart.getData().clear();
-		ArrayList<String> name = getAPIname();
-		ArrayList<Integer> times = getAPItimes();
+		ArrayList<String> name = new ArrayList<String>();
+		ArrayList<Integer> times = new ArrayList<Integer>();
+		name=data.result_api;
+		times=data.result_count;
 		 ObservableList<PieChart.Data> pieChartData     //pieChart
          = FXCollections.observableArrayList();
 		XYChart.Series setl =new XYChart.Series<>();   //barChart
