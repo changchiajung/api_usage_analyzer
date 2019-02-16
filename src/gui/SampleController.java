@@ -102,15 +102,8 @@ public class SampleController implements Initializable{
 	    private NumberAxis y;
 	@FXML
 	 public  void set_Data(){                         //放資料
-		try {
-			data.getdata(Class, Method, Field, search=searchfield.getText(),use);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		data.get(Class, Method, Field, search=searchfield.getText(),use);
+		use=false;
 		search=searchfield.getText();
 		barchart.getData().clear();                   //清除資料
 		pieChart.getData().clear();
@@ -133,16 +126,7 @@ public class SampleController implements Initializable{
 		 
 	}
 	//get information
-	public ArrayList<String> getAPIname() {
-		ArrayList<String> API =new ArrayList<String>();
-		
-		 return API;
-	}
-	public ArrayList<Integer> getAPItimes() {
-		ArrayList<Integer> API =new ArrayList<Integer>();
-	
-		 return API;
-	}
+
 	
 	
 	 @FXML
@@ -166,21 +150,22 @@ public class SampleController implements Initializable{
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		 XYChart.Series setl =new XYChart.Series<>();   //barChart
-		 setl.getData().add(new XYChart.Data("",30));
-		 setl.getData().add(new XYChart.Data("",3));
-		 setl.getData().add(new XYChart.Data("",3));
-		 setl.getData().add(new XYChart.Data("",12));
+//		 setl.getData().add(new XYChart.Data("",30));
+//		 setl.getData().add(new XYChart.Data("",3));
+//		 setl.getData().add(new XYChart.Data("",3));
+//		 setl.getData().add(new XYChart.Data("",12));
 		 barchart.getData().addAll(setl);
 		 
 		 ObservableList<PieChart.Data> pieChartData     //pieChart
 	                = FXCollections.observableArrayList(
-	                new PieChart.Data("", 13),
-	                new PieChart.Data("", 25),
-	                new PieChart.Data("", 10),
-	                new PieChart.Data("", 22),
-	                new PieChart.Data("", 30));
+//	                new PieChart.Data("", 13),
+//	                new PieChart.Data("", 25),
+//	                new PieChart.Data("", 10),
+//	                new PieChart.Data("", 22),
+	                new PieChart.Data("", 0));
 		 
 		 pieChart.setData(pieChartData);
 		 
 	}
+	
 }
