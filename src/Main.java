@@ -1,5 +1,4 @@
 package application;
-	
 import java.io.File;
 
 import javafx.application.Application;
@@ -20,8 +19,6 @@ public class Main extends Application {
 	
 	public void start(Stage primaryStage) {
 		try {
-		
-			
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Sample.fxml"));
 			Scene scene = new Scene(root,960,540);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());		
